@@ -2,16 +2,16 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import *  as Location from 'expo-location';
-import WEATHER_API_KEY from './keys';
+import WeatherInfo from './components/WeatherInfo';
 
-// const apiKey = WEATHER_API_KEY;
+const apiKey = 'd8eee5e8e18aa41e451dd8d410253ec1';
 const BASE_WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?`
 
 export default function App() {
 
   const [ errorMessage, setErrorMessage ] = useState(null);
   const [ currentWeather, setCurrentWeather ] = useState(null);
-
+  const [ unitSystem, setUnitSystem ] = useState('metric');
   useEffect(() => {
      load()
   }, [])
@@ -27,7 +27,7 @@ export default function App() {
 
         const { latitude, longitude } = location.coords
 
-        const weatherURL = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}`
+        const weatherURL = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitSystem}&appid=${apiKey}`
         const response = await fetch(weatherURL);
         const result = await response.json()
 
@@ -37,23 +37,37 @@ export default function App() {
           setErrorMessage(result.message)
         }
 
-    } catch (error){}
+    } catch (error){
+      setErrorMessage(error.message)
+    }
   }
-
-
-  return (
-    <View style={styles.container}>
-      <Text>Hello</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  
+  if(currentWeather){
+    return (
+      <View style={styles.container}>
+          <StatusBar style="auto" />
+          <View style={styles.main}>
+            <WeatherInfo currentWeather={currentWeather}/>
+          </View>
+      </View>
+    )} else {
+      return (
+        <View style={styles.container}>
+          <StatusBar style="auto" />
+           <Text>{errorMessage}</Text>
+        </View>
+      )
+    }
+  }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  main: {
+    justifyContent: 'center',
+    flex: 1,
+  }
 });
