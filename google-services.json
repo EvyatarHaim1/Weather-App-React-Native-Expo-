@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "329092855945",
+    "project_id": "weather-app-evyatar-haim",
+    "storage_bucket": "weather-app-evyatar-haim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329092855945:android:a9ccd32d765ab5d7ff6e58",
+        "android_client_info": {
+          "package_name": "weatherApp.evyatar12"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329092855945-apt0hnnsp36rpof0uhttreh6m79g8i3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaYZ9Dl70S9OqPFCMoFVkyCj7DtnPC8_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329092855945-apt0hnnsp36rpof0uhttreh6m79g8i3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
